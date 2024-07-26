@@ -1,5 +1,5 @@
 // SPDX-License-Identifier: UNLICENSED
-pragma solidity ^0.8.13;
+pragma solidity ^0.8.20;
 
 import {ERC20Burnable, ERC20} from "@openzeppelin/contracts/token/ERC20/extensions/ERC20Burnable.sol";
 import {Ownable} from "@openzeppelin/contracts/access/Ownable.sol";
@@ -95,7 +95,7 @@ contract DSCEngine is ReentrancyGuard {
 
     /*
      * @notice follows CEI
-     * @param toeknCollateralAddress The address of the otken to deposit as collateral
+     * @param tokenCollateralAddress The address of the token to deposit as collateral
      * @param amountCollateral the amount of collateral to deposit
      */
     function depositeCollateral(address tokenCollateralAddress, uint256 amountCollateral)
