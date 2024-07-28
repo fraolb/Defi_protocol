@@ -126,4 +126,21 @@ contract DSCEngineTest is Test {
 
         vm.stopPrank();
     }
+
+    ///////////////////////////////////
+    ////redeem  Collateral      //////
+    /////////////////////////////////
+    function testRedeemCollateralForDsc() public depositedCollateral {
+        vm.startPrank(USER);
+        (, uint256 collateralValueInUsd) = engine.getAccountInformation(USER);
+        uint256 collateralValue = engine.getTokenAmountFromUsd(weth, collateralValueInUsd);
+        uint256 expectedDscMinted = collateralValue / 2;
+
+        engine.mintDsc(expectedDscMinted);
+        engine.redeemCollateralForDsc(weth, collateralValue / 8, expectedDscMinted / 2);
+        (uint256 totalDscMinted,) = engine.getAccountInformation(USER);
+        console.log(totalDscMinted);
+        assertEq(totalDscMinted, expectedDscMinted);
+        vm.stopPrank();
+    }
 }
